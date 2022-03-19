@@ -12,6 +12,7 @@ import { OrderSuccessComponent } from './order-success/order-success.component';
 import { ProductComponent } from './product/product.component';
 
 const routes: Routes = [
+  {path: '', component: ProductComponent},
   {path: 'home', component: HomeComponent},
   {path: 'products', component: ProductComponent},
   {path: 'cart', component: CartComponent },

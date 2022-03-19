@@ -1,0 +1,55 @@
+<div class="row">
+    <div class="col-md-8">
+        <form [formGroup]="form" #f="ngForm">
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input formControlName="title"  name="title" type="text" class="form-control" id="title">
+                <div class="alert alert-danger" *ngIf="title.touched && title.invalid">
+                    Product title is required.
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <label for="price" class="form-label">Price</label>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">$</span>
+                    <input formControlName="price" name="price" type="text" class="form-control" id="price">
+                </div>
+                <div class="alert alert-danger" *ngIf="price.touched && price.invalid">
+                    <div *ngIf="price.errors!['required']">Product price is required.</div> 
+                    <div *ngIf="price.errors!['price_outof_range']">Product price has to be positive.</div> 
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="category" class="form-label">Category</label>
+                <select formControlName="category" name="category" id="category" class="form-control">
+                    <option value=""></option>
+                    <option [value]="category" *ngFor="let category of categories">
+                        {{category}}
+                    </option>
+                </select>
+                <div class="alert alert-danger" *ngIf="category.touched && category.invalid">
+                    Product category is required.
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="imageURL" class="form-label">Image URL</label>
+                <input formControlName="imageURL" name="imageURL" type="text" class="form-control" id="imageURL">
+                <div class="alert alert-danger" *ngIf="imageURL.touched && imageURL.invalid">
+                    <div *ngIf="imageURL.errors!['required']">Product Image URL is required.</div>
+                    <div *ngIf="imageURL.errors!['invalid_imageURL']">Product Image URL is not valid.</div>
+                </div>
+            </div>
+            <button class="btn btn-primary" [disabled]="form.invalid" (click)="save(f.value)">Save</button>
+            <button class="btn btn-danger" [disabled]="form.invalid" (click)="delete(f.value)">Delete</button>
+        </form>
+    </div>
+    <div class="col-md-4">
+        <div *ngIf="title.value" class="card" style="width: 20rem;">
+            <img [src]="imageURL.value" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title">{{title.value}}</h5>
+              <p class="card-text">{{price.value | currency:'CAD':"symbol"}}</p>
+            </div>
+        </div>
+    </div>
+</div>
