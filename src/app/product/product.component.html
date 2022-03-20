@@ -1,25 +1,13 @@
 <div class="main">
     <div class="row">
-        <div class="col-3">
-            <ul class="list-group">
-                <li class="list-item"></li>
-            </ul>
+        <div class="col-2">
+            <product-filter [categories]="categories" [filtered_category]="filtered_category"></product-filter>
         </div>
         <div class="col">
-            <div class="row">
-                <ng-container *ngFor="let product of products; let i = index">
-                    <div class="col">
-                        <div class="card" style="width: 20rem;">
-                            <img [src]="product.imageURL" class="card-img-top">
-                            <div class="card-body">
-                              <h5 class="card-title">{{product.title}}</h5>
-                              <p class="card-text">{{product.price | currency:'CAD':"symbol"}}</p>
-                              <a href="" class="btn btn-primary">Add to Cart</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div *ngIf="(i+1)%2===0" class="w-100"></div>
-                </ng-container>
+            <div class="card-items">   
+                <div class="card" *ngFor="let product of filtered_products">
+                    <card [product]="product" [want_button]="true"></card>
+                </div>
             </div>
         </div>
     </div>

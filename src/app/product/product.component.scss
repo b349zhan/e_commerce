@@ -1,5 +1,10 @@
 .main{
-    margin-left: 10vw;
-    margin-right: 10vw;
+    margin-left: 3vw;
     margin-top: 5vh;
+}
+.card-items{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 2rem;
+    margin-right: 4vw;
 }

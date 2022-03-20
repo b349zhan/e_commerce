@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { CategoryService } from '../service/category/category.service';
 import { ProductService } from '../service/product/product.service';
 
@@ -11,12 +12,24 @@ export class ProductComponent implements OnInit {
 
   products:any = []
   categories:any = []
-  constructor(private product_service: ProductService, private category_service: CategoryService) {
+  filtered_category:any = null;
+  filtered_products:any=[]
+  constructor(private product_service: ProductService, private category_service: CategoryService, private route: ActivatedRoute) {
+    console.log("Constructing Product Page")
     this.products = this.product_service.get_all_products();
     this.categories = this.category_service.get_all_categories();
+    this.filtered_products = this.products;
+    route.queryParamMap.subscribe(params=>{
+      this.filtered_category = params.get('category');
+      if (this.filtered_category==null){
+        this.filtered_products = this.products;
+      } else{
+        this.filtered_products = this.products.filter((product:any)=>product.category==this.filtered_category);
+      }
+      
+    })
   }
 
   ngOnInit(): void {
   }
-
 }
