@@ -1,1 +1,36 @@
-<p>cart works!</p>
+<div class="main">
+    <h1>Shopping Cart</h1>
+    <div class="content">
+        You have {{0}} items in your shopping cart.
+    </div>
+    <table class="table">
+        <thead class="text-end">
+            <tr>
+                <th></th>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr >
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+        <tfoot >
+            <tr>
+                <th>Total Price</th>
+                <th></th>
+                <th></th>
+                <th class="text-end">{{100|currency:'CAD':"symbol"}}</th>
+            </tr>
+        </tfoot>
+    </table>
+    <div class="buttons">
+        <button class="btn btn-danger btn-sm" (click)="clear_cart()">Clear Shopping Cart</button>
+        <button class="btn btn-primary" routerLink="/checkout">Checkout</button>
+    </div>
+</div>

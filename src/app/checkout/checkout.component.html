@@ -1,1 +1,32 @@
-<p>checkout works!</p>
+<div class="main">
+    <h1>Shipping</h1>
+    <form [formGroup]="form" #f="ngForm">
+        <div class="mb-3">
+            <label for="title" class="form-label">Name</label>
+            <input formControlName="name"  name="name" type="text" class="form-control" id="name">
+            <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
+                Name is required.
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="address1" class="form-label">Address Line 1</label>
+            <input formControlName="address1" name="address1" type="text" class="form-control" id="address1">
+            <div class="alert alert-danger" *ngIf="address1.touched && address1.invalid">
+                <div *ngIf="address1.errors!['required']">Address Line 1 Field is required.</div>  
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="address2" class="form-label">Address Line 2</label>
+            <input formControlName="address2" name="address2" type="text" class="form-control" id="address2">
+        </div>
+        
+        <div class="mb-3">
+            <label for="city" class="form-label">City</label>
+            <input formControlName="city" name="city" type="text" class="form-control" id="city">
+            <div class="alert alert-danger" *ngIf="city.touched && city.invalid">
+                <div *ngIf="city.errors!['required']">City Field is required.</div>
+            </div>
+        </div>
+        <button class="btn btn-primary" [disabled]="form.invalid" (click)="checkout(f.value)">Place Order</button>
+    </form>
+</div>

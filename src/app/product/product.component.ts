@@ -14,6 +14,7 @@ export class ProductComponent implements OnInit {
   categories:any = []
   filtered_category:any = null;
   filtered_products:any=[]
+  cart:any=null;
   constructor(private product_service: ProductService, private category_service: CategoryService, private route: ActivatedRoute) {
     console.log("Constructing Product Page")
     this.products = this.product_service.get_all_products();
